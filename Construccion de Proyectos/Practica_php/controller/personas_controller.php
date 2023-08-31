@@ -7,10 +7,10 @@ El controlador es la entidad responsable de:
 gestiona solo consulas a bases de datos) 
 */
 
-require_once("model/personas_model,php");
+require_once("model/personas_model.php");
 $per=new personas_model();
 $datos=$per->get_personas();
 
 //2. comunicarse con la vista 
-require_once("model/personas_model.php");
+require_once("view/personas_view.phtml");
 ?>
