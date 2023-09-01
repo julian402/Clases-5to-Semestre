@@ -1,5 +1,8 @@
 <?php
 
+//Conexion a mysql
+$connect = mysqli_connect('localhost', 'julian', 'julian', 'formulario');
+
 // Recoge valores desde el formulario
 $email = isset($_POST['email']) ?$_POST['email'] : '';
 $message = isset($_POST['message']) ?$_POST['message'] : '';
@@ -16,6 +19,38 @@ if (count($_POST))
         $email_error = 'Please enter an email address';
         $errors ++;
     }
+
+    if ($_POST['message'] == '')
+    {
+        $message_error = 'Please enter a message';
+        $errors ++;
+    }
+
+    if ($errors == 0)
+    {
+        $query = ' INSERT INTO  contact (
+            email,
+            message
+        )   VALUES (
+            ""'.addslashes($_POST['email']).'",
+            ""'.addslashes($_POST['message']).'"
+        )';
+        mysqli_query($connect, $query); 
+    }
+    
+    //Enviar la informacion capturada al email del Admin
+    $message = 'You have received a contact form submission:
+   
+    Email: '.$_POST['email'].'
+    Message: '.$_POST['message'];
+
+    mail('jcorredorg@hotmail.com',
+    'Contact form submission',
+    $message);
+
+    header('Location: pagina.html');
+    die();
+
 }
 ?>
 
