@@ -64,7 +64,50 @@ if (count($_POST))
 
     header('Location: pagina.html');
     die();
+}
 
+// Arreglo para el departamento de Atención al Cliente
+$atencionCliente = array(
+    "Juan Pérez",
+    "María Rodríguez",
+    "Luis González",
+    "Ana Martínez"
+);
+
+// Arreglo para el departamento de Soporte Técnico
+$soporteTecnico = array(
+    "Carlos Sánchez",
+    "Laura López",
+    "Pedro Ramírez",
+    "Sofía Torres"
+);
+
+// Arreglo para el departamento de Facturación
+$facturacion = array(
+    "David García",
+    "Carmen Fernández",
+    "Jorge Ruiz",
+    "Isabel Jiménez"
+);
+
+// Puedes acceder a los nombres de los empleados de cada departamento de la siguiente manera:
+echo "Empleados del Departamento de Atención al Cliente:<br>";
+foreach ($atencionCliente as $empleado) {
+    echo $empleado . "<br>";
+}
+
+echo "<br>";
+
+echo "Empleados del Departamento de Soporte Técnico:<br>";
+foreach ($soporteTecnico as $empleado) {
+    echo $empleado . "<br>";
+}
+
+echo "<br>";
+
+echo "Empleados del Departamento de Facturación:<br>";
+foreach ($facturacion as $empleado) {
+    echo $empleado . "<br>";
 }
 ?>
 
