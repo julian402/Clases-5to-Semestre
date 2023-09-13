@@ -109,6 +109,22 @@ echo "Empleados del Departamento de Facturación:<br>";
 foreach ($facturacion as $empleado) {
     echo $empleado . "<br>";
 }
+
+$departamento = $_POST['departamento']; // Esto es un ejemplo, asegúrate de obtenerlo correctamente
+
+// Seleccionar un empleado aleatorio según el departamento
+$empleadoSeleccionado = "";
+
+if ($departamento === "atencion_al_cliente") {
+    $empleadoSeleccionado = $atencion_al_cliente[rand(0, count($atencion_al_cliente) - 1)];
+} elseif ($departamento === "soporte_tecnico") {
+    $empleadoSeleccionado = $soporte_tecnico[rand(0, count($soporte_tecnico) - 1)];
+} elseif ($departamento === "facturacion") {
+    $empleadoSeleccionado = $facturacion[rand(0, count($facturacion) - 1)];
+}
+
+echo "Empleado seleccionado para el departamento de $departamento: $empleadoSeleccionado";
+
 ?>
 
 <!doctype html>
