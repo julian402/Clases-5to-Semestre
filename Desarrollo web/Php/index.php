@@ -1,7 +1,7 @@
 <?php
 
 //Conexion a mysql
-$connect = mysqli_connect('localhost', 'julian', 'julian', 'formulario');
+$connect = mysqli_connect('localhost', 'julian', 'julian123*', 'formulario');
 
 // Recoge valores desde el formulario
 $email = isset($_POST['email']) ?$_POST['email'] : '';
@@ -12,6 +12,8 @@ $departamento = isset($_POST['departamento']) ?$_POST['departamento'] : '';
 // Variables de gestion de error
 $email_error = '';
 $message_error = '';
+$nombreCliente = '';
+$departamento = '';
 
 if (count($_POST))
 {
@@ -44,10 +46,14 @@ if (count($_POST))
     {
         $query = ' INSERT INTO  contact (
             email,
-            message
+            message,
+            nombreCliente,
+            departamento
         )   VALUES (
             ""'.addslashes($_POST['email']).'",
             ""'.addslashes($_POST['message']).'"
+            ""'.addslashes($_POST['nombreCliente']).'",
+            ""'.addslashes($_POST['departamento']).'"
         )';
         mysqli_query($connect, $query); 
     }
