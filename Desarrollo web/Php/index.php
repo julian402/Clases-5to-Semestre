@@ -1,7 +1,7 @@
 <?php
 
 //Conexion a mysql
-$connect = mysqli_connect('localhost', 'julian', 'julian123*', 'formulario');
+$connect = mysqli_connect('localhost', 'root', '', 'formulario');
 
 // Recoge valores desde el formulario
 $email = isset($_POST['email']) ?$_POST['email'] : '';
@@ -46,14 +46,10 @@ if (count($_POST))
     {
         $query = ' INSERT INTO  contact (
             email,
-            message,
-            nombreCliente,
-            departamento
+            message
         )   VALUES (
             ""'.addslashes($_POST['email']).'",
             ""'.addslashes($_POST['message']).'"
-            ""'.addslashes($_POST['nombreCliente']).'",
-            ""'.addslashes($_POST['departamento']).'"
         )';
         mysqli_query($connect, $query); 
     }
@@ -153,7 +149,7 @@ echo "Empleado seleccionado para el departamento de $departamento: $empleadoSele
 
             Message:
             <br>
-            <textarea name="message"></textarea>
+            <textarea name="message"><?php echo $message; ?></textarea>
 
             <br></br>
 
