@@ -52,23 +52,23 @@ if (count($_POST))
             ""'.addslashes($_POST['message']).'"
         )';
         mysqli_query($connect, $query); 
-    }
-    
-    //Enviar la informacion capturada al email del Admin
-    $message = 'You have received a contact form submission:
+
+         //Enviar la informacion capturada al email del Admin
+        $message = 'You have received a contact form submission:
    
     Email: '.$_POST['email'].'
     Message: '.$_POST['message'];
+    
+        mail('jcorredorg@hotmail.com',
+            'Contact form submission',
+            $message);
+        
+        header('Location: thankyou.html');
+        die();
 
-    mail('jcorredorg@hotmail.com',
-    'Contact form submission',
-    $message);
-
-    header('Location: pagina.html');
-    die();
+    }  
 }
 
-// Arreglo para el departamento de Atención al Cliente
 $atencionCliente = array(
     "Juan Pérez",
     "María Rodríguez",
@@ -76,7 +76,6 @@ $atencionCliente = array(
     "Ana Martínez"
 );
 
-// Arreglo para el departamento de Soporte Técnico
 $soporteTecnico = array(
     "Carlos Sánchez",
     "Laura López",
@@ -84,7 +83,6 @@ $soporteTecnico = array(
     "Sofía Torres"
 );
 
-// Arreglo para el departamento de Facturación
 $facturacion = array(
     "David García",
     "Carmen Fernández",
@@ -92,6 +90,22 @@ $facturacion = array(
     "Isabel Jiménez"
 );
 
+$empleadoSeleccionado = "";
+ 
+$empleadoSeleccionado[array_rand($empleadoSeleccionado,1)];
+
+
+/*
+if ($departamento === "atencion_al_cliente") {
+    $empleadoSeleccionado = $atencion_al_cliente[array_rand(0, count($atencion_al_cliente) - 1)];
+} elseif ($departamento === "soporte_tecnico") {
+    $empleadoSeleccionado = $soporte_tecnico[array_rand(0, count($soporte_tecnico) - 1)];
+} elseif ($departamento === "facturacion") {
+    $empleadoSeleccionado = $facturacion[array_rand(0, count($facturacion) - 1)];
+}
+*/
+
+echo "Empleado seleccionado para el departamento de $departamento: $empleadoSeleccionado";
 // Puedes acceder a los nombres de los empleados de cada departamento de la siguiente manera:
 echo "Empleados del Departamento de Atención al Cliente:<br>";
 foreach ($atencionCliente as $empleado) {
@@ -112,20 +126,6 @@ foreach ($facturacion as $empleado) {
     echo $empleado . "<br>";
 }
 
-$departamento = $_POST['departamento']; // Esto es un ejemplo, asegúrate de obtenerlo correctamente
-
-// Seleccionar un empleado aleatorio según el departamento
-$empleadoSeleccionado = "";
-
-if ($departamento === "atencion_al_cliente") {
-    $empleadoSeleccionado = $atencion_al_cliente[rand(0, count($atencion_al_cliente) - 1)];
-} elseif ($departamento === "soporte_tecnico") {
-    $empleadoSeleccionado = $soporte_tecnico[rand(0, count($soporte_tecnico) - 1)];
-} elseif ($departamento === "facturacion") {
-    $empleadoSeleccionado = $facturacion[rand(0, count($facturacion) - 1)];
-}
-
-echo "Empleado seleccionado para el departamento de $departamento: $empleadoSeleccionado";
 
 ?>
 
