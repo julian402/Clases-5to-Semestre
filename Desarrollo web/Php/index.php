@@ -6,6 +6,8 @@ $connect = mysqli_connect('localhost', 'julian', 'julian', 'formulario');
 // Recoge valores desde el formulario
 $email = isset($_POST['email']) ?$_POST['email'] : '';
 $message = isset($_POST['message']) ?$_POST['message'] : '';
+$nombreCliente = isset($_POST['nombreCliente']) ?$_POST['nombreCliente'] : '';
+$departamento = isset($_POST['departamento']) ?$_POST['departamento'] : '';
 
 // Variables de gestion de error
 $email_error = '';
@@ -23,6 +25,18 @@ if (count($_POST))
     if ($_POST['message'] == '')
     {
         $message_error = 'Please enter a message';
+        $errors ++;
+    }
+
+    if ($_POST['nombreCliente'] == '')
+    {
+        $message_error = 'Please enter a name';
+        $errors ++;
+    }
+
+    if ($_POST['departamento'] == '')
+    {
+        $message_error = 'Please enter a department';
         $errors ++;
     }
 
@@ -78,9 +92,31 @@ if (count($_POST))
 
             <br></br>
 
-            <input type="submit" value="submit">
+            NombreCliente:
+            <br>
+            <input type="text" name="nombreCliente" values= "<?php echo $nombreCliente; ?>">
 
-        </form>
+            <br></br>
+
+
+            <br>
+            <form action="">
+            <label for="departamento"> Departamento</label> 
+            <select name="departamento" id="departamento">
+                <option value="atencionCliente">Atención al Cliente</option>
+                <option value="soporteTecnico">Soporte Técnico</option>
+                <option value="facturacion">Facturación</option>
+            </select>
+
+            <br></br>
+
+            <input type="submit" value="Enviar" />
+            </form>
+            
+            <br></br>
+
+
+        
 
     </body>
 </html>
